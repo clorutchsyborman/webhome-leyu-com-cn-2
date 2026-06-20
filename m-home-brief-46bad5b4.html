@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>再次收藏 · 持续关注 · ng28</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fbedd9 0%, #f5d7b0 50%, #f1c79d 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.7;
+            color: #2a241f;
+        }
+
+        .card {
+            max-width: 780px;
+            width: 100%;
+            background: #fffcf7;
+            border-radius: 36px;
+            padding: 3rem 2.8rem;
+            box-shadow: 0 16px 40px -8px rgba(160, 110, 60, 0.28);
+            transition: box-shadow 0.2s ease;
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 540px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .card {
+                padding: 2rem 1.5rem;
+                border-radius: 28px;
+            }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 560;
+            letter-spacing: -0.01em;
+            color: #4a2e1b;
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+            border-left: 6px solid #d7a778;
+            padding-left: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.7rem;
+                padding-left: 1rem;
+            }
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #7a5d44;
+            margin-bottom: 2.2rem;
+            padding-left: 1.8rem;
+            font-style: italic;
+            border-bottom: 1px dashed #e6d0ba;
+            padding-bottom: 0.6rem;
+        }
+
+        .intro {
+            font-size: 1.08rem;
+            color: #3d2c1e;
+            margin-bottom: 2rem;
+            background: #f7ede1;
+            padding: 1.2rem 1.6rem;
+            border-radius: 24px;
+            border-left: 4px solid #c3946b;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #36281e;
+        }
+
+        .pull-quote {
+            background: #f1e2d3;
+            border-radius: 28px;
+            padding: 1.4rem 2rem;
+            margin: 2rem 0 1.8rem 0;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: #4f3622;
+            border: 1px solid #e2cdb6;
+            box-shadow: 0 2px 6px rgba(170, 120, 70, 0.08);
+            position: relative;
+        }
+
+        .pull-quote::before {
+            content: "“";
+            font-size: 3rem;
+            line-height: 0.8;
+            color: #b58255;
+            font-weight: 600;
+            margin-right: 0.2rem;
+            vertical-align: -0.3rem;
+        }
+
+        .pull-quote strong {
+            font-weight: 560;
+            color: #4a2f19;
+        }
+
+        .highlight-link {
+            background: #e7d1bc;
+            border-radius: 60px;
+            padding: 0.2rem 0.9rem 0.3rem 0.9rem;
+            font-weight: 500;
+            color: #3d2819;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 0.98rem;
+            border: 1px solid transparent;
+        }
+
+        .highlight-link:hover {
+            background: #d4b699;
+            color: #1f1209;
+            border-color: #b58a63;
+        }
+
+        a {
+            color: #7a4f2c;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color 0.15s;
+        }
+
+        a:hover {
+            color: #a86f3f;
+        }
+
+        .note-box {
+            background: #f2e4d5;
+            border-radius: 24px;
+            padding: 1.4rem 1.8rem;
+            margin: 2rem 0 1rem 0;
+            border: 1px solid #ddc8b4;
+            font-size: 0.96rem;
+        }
+
+        .note-box span {
+            font-weight: 560;
+            display: inline-block;
+            background: #dbbf9f;
+            color: #2f1e11;
+            padding: 0.1rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            margin-right: 0.5rem;
+        }
+
+        .faq-mini {
+            margin: 2.2rem 0 0.8rem 0;
+            border-top: 1px solid #e3cfbb;
+            padding-top: 1.8rem;
+        }
+
+        .faq-mini h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4d321c;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.01em;
+        }
+
+        .faq-mini p {
+            margin-bottom: 1.2rem;
+            font-size: 0.97rem;
+            color: #463528;
+        }
+
+        .footer-note {
+            margin-top: 0.8rem;
+            font-size: 0.92rem;
+            color: #6b533d;
+            text-align: center;
+            border-top: 1px solid #e5d3c0;
+            padding-top: 1.6rem;
+        }
+
+        .footer-note a {
+            color: #6a4229;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>再访 · 收藏 · 持续</h1>
+        <div class="subhead">一篇关于再次打开与默默关注的随笔</div>
+
+        <div class="intro">
+            有时候，一个网站不会刻意提醒你回来。它只是安静地待在那里，等你某天忽然想起，然后再次输入那个熟悉的名字。
+        </div>
+
+        <p>
+            我最初存下 <a href="https://m-home-ng28.com" class="highlight-link">ng28</a> 这个地址，是在一个普通的傍晚。页面简洁，没有弹窗，没有催促订阅的横幅。它给我的感觉，像一本放在书架第二层的旧笔记本——你知道它在，便觉得踏实。后来电脑换了、书签栏乱了几次，但那个名字一直留在记忆里，从未被覆盖。
+        </p>
+
+        <p>
+            收藏夹里的链接总在悄悄过期，但有些地址你不需要书签。你记得它的布局、字体大小、甚至文章里那张插图的色调。再访问，不是为了找什么新鲜事，更像是确认某种熟悉的氛围还在。就像路过以前常去的街角书店，虽然不总要买书，但看到灯光亮着，心里就安稳。
+        </p>
+
+        <div class="pull-quote">
+            <strong>持续关注</strong> 不一定需要每天刷新。它更像一种默契——你知道那个页面会更新，而你会适时地、自然地，再次点开。
+        </div>
+
+        <p>
+            我偶尔会在周末的深夜，或者下雨的午后，打开 <a href="https://m-home-ng28.com">ng28</a>。没有固定的频率，没有待读标记。页面打开的那几秒，等待的间隙里，会有一种细微的期待——就像拧开一只旧收音机，慢慢旋到熟悉的频率，沙沙声之后，音乐恰好开始。你不确定这次会看到什么，但你知道它不会让你失望。
+        </p>
+
+        <p>
+            对我来说，收藏一个网站，其实是在收藏一种心境。你存下它的时候，往往正是你恰好需要它的那一刻。而后来再次访问，便是与那个时刻重新连接。页面可能已经更新，但底色没变，节奏没变，那种“这里有人认真对待内容”的气息还在。这大概是持续关注里最动人的部分——变化中的不变。
+        </p>
+
+        <div class="note-box">
+            <span>📌 一个习惯</span>
+            如果你也偶尔想起某个页面，不妨把它放在浏览器最顺手的位置。不需要每天看，只要知道它在那里，就够了。<strong>收藏</strong> 和 <strong>再次访问</strong> 之间，往往藏着最自然的使用节奏。
+        </div>
+
+        <p>
+            有一次，我忘记了自己是否已经收藏过 <a href="https://m-home-ng28.com">ng28</a>，于是又存了一次。后来发现书签栏里出现了两个相同的名字，不禁笑了。你看，真正在意的东西，你会忍不住存两遍。那不是失误，是下意识的确认。
+        </p>
+
+        <div class="faq-mini">
+            <h3>一个小问题 —— 你最近一次重新访问的网站是什么？</h3>
+            <p>可能你自己都忘了是什么时候第一次打开它的。但再次打开的那一刻，所有操作都是肌肉记忆——光标移动的路径、点击的位置、甚至等待页面加载时目光落点的习惯。这就是持续关注的微妙之处：它不需要刻意的努力，它只是自然而然地发生了。</p>
+            <p style="margin-bottom:0.2rem;">如果此刻你脑海中闪过某个网址，也许就是再次打开它的好时机。不用急着做什么，只是看看它还在不在，看看它变成了什么样子。有时候，最简单的再访，就是最诚实的陪伴。</p>
+        </div>
+
+        <div class="footer-note">
+            <span>—— 写在再次收藏之后 · <a href="https://m-home-ng28.com">ng28</a> ——</span>
+        </div>
+    </div>
+</body>
+</html>
