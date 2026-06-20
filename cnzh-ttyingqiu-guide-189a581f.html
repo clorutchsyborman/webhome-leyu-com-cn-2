@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天天盈球 · 信息卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9fafb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            color: #1e293b;
+            line-height: 1.65;
+            padding: 2.5rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 720px;
+            width: 100%;
+        }
+
+        /* 极简 hero */
+        .hero {
+            margin-bottom: 2.8rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 0.95rem;
+            color: #64748b;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.8rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* 标题层级 */
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: #0f172a;
+            margin-top: 2.2rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid #94a3b8;
+            padding-left: 0.8rem;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1e293b;
+            margin-top: 1.2rem;
+            margin-bottom: 0.45rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* 卡片群组 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            margin: 1.5rem 0 1.2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #eef2f6;
+            border-radius: 18px;
+            padding: 1.4rem 1.6rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-title span {
+            background: #eef2f6;
+            width: 28px;
+            height: 28px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: #1e293b;
+        }
+
+        .card p {
+            font-size: 0.92rem;
+            color: #334155;
+            margin-bottom: 0.2rem;
+        }
+
+        .card .tag {
+            display: inline-block;
+            background: #f1f5f9;
+            font-size: 0.8rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            color: #334155;
+            margin-top: 0.4rem;
+            margin-right: 0.3rem;
+        }
+
+        .audience-list {
+            list-style: none;
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .audience-list li {
+            font-size: 0.92rem;
+            padding: 0.3rem 0;
+            color: #334155;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+        }
+
+        .audience-list li::before {
+            content: "—";
+            color: #94a3b8;
+            font-weight: 300;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.5rem 1.6rem;
+            border: 1px solid #eef2f6;
+            margin: 1.8rem 0 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .link-paragraph a {
+            color: #1e293b;
+            text-decoration: underline;
+            text-decoration-color: #cbd5e1;
+            text-underline-offset: 3px;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .link-paragraph a:hover {
+            color: #0f172a;
+            text-decoration-color: #0f172a;
+        }
+
+        /* FAQ 摘要简化 */
+        .faq-mini {
+            margin: 2rem 0 0.8rem;
+        }
+
+        .faq-item {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #0f172a;
+        }
+
+        .faq-a {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-top: 0.2rem;
+            padding-left: 0.2rem;
+        }
+
+        .footnote {
+            margin-top: 2.8rem;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 1.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.5rem 0.9rem;
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .card {
+                padding: 1.2rem 1.2rem;
+            }
+            .link-paragraph {
+                padding: 1.2rem 1.2rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- hero -->
+        <div class="hero">
+            <h1>天天盈球</h1>
+            <div class="sub">信息卡片 · 日常查询与对照</div>
+        </div>
+
+        <!-- 主视觉卡片：用途卡片式 -->
+        <h2>主要用途</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-title"><span>📊</span> 数据速查</div>
+                <p>快速获取比赛走势、双方历史对照以及近期统计。适合赛前简单浏览，也适合赛后复核数字。</p>
+                <span class="tag">胜率</span>
+                <span class="tag">均得分</span>
+                <span class="tag">交锋记录</span>
+            </div>
+            <div class="card">
+                <div class="card-title"><span>📋</span> 延伸阅读</div>
+                <p>从一场比赛出发，查看相关队伍、联赛背景或赛季演变。适合想多了解一点细节的日常查阅。</p>
+                <span class="tag">赛季走势</span>
+                <span class="tag">阵容变化</span>
+                <span class="tag">近况对比</span>
+            </div>
+        </div>
+
+        <!-- 适合人群 卡片式 -->
+        <h2>适合人群</h2>
+        <div class="card">
+            <div class="card-title"><span>👤</span> 日常使用者</div>
+            <ul class="audience-list">
+                <li>喜欢赛前随手翻一翻数据对照的爱好者</li>
+                <li>习惯赛后复盘时核对统计的观众</li>
+                <li>需要一份简洁信息卡来延伸阅读的球迷</li>
+            </ul>
+        </div>
+
+        <!-- 自然链接段落（核心，符合 a 标签文本严格等于「天天盈球」） -->
+        <div class="link-paragraph">
+            <p>如果你习惯在赛前或赛后快速查看对照信息，可以试试在 <a href="https://cnzh-ttyingqiu.com">天天盈球</a> 里浏览比赛走势和近期数据。页面结构偏向信息卡片式，适合日常查询而不需要过多跳转。上述用途和场景也是基于实际使用体验所做的简单梳理。</p>
+        </div>
+
+        <!-- 场景简写 + 提示 -->
+        <h2>常见场景举例</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-title"><span>⏳</span> 赛前快速浏览</div>
+                <p>打开页面，重点看近五场走势和主客差异，一分钟可以过完主要数字。</p>
+            </div>
+            <div class="card">
+                <div class="card-title"><span>📌</span> 赛后对照</div>
+                <p>比赛结束后对照赛前数据，看看哪些指标与实际过程吻合，哪些有偏差。</p>
+            </div>
+            <div class="card">
+                <div class="card-title"><span>📖</span> 延伸阅读</div>
+                <p>从某一场比赛点进联赛页面，了解整个赛季的节奏或某支队伍的长期变化。</p>
+            </div>
+        </div>
+
+        <!-- FAQ 摘要（简洁版） -->
+        <h2>常见疑问摘要</h2>
+        <div class="faq-mini">
+            <div class="faq-item">
+                <div class="faq-q">页面数据更新频率如何？</div>
+                <div class="faq-a">通常在比赛结束后一段时间内完成更新，具体视数据源而定，日常查询基本够用。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">是否包含所有联赛？</div>
+                <div class="faq-a">主要覆盖常见联赛及热门赛事，小众联赛可能覆盖不全，建议以实际页面为准。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">可以在手机上正常浏览吗？</div>
+                <div class="faq-a">页面适配移动端，卡片结构在窄屏下依然清晰，适合随时打开查看。</div>
+            </div>
+        </div>
+
+        <!-- 尾注 -->
+        <div class="footnote">
+            信息卡片式 · 温和呈现 · 日常参考
+        </div>
+    </div>
+</body>
+</html>
